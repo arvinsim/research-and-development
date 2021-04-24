@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.4.0",
