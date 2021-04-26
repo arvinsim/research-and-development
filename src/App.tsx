@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { CreatePerson } from "./CreatePerson";
 import { UseRef } from "./UseRef";
 import { TranslatedText } from "./TranslatedText";
+import { ReactSpring } from "./ReactSpring";
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
           </Route>
           <Route exact path={"/translated"}>
             <TranslatedText />
+          </Route>
+          <Route exact path={"/spring"}>
+            <ReactSpring />
           </Route>
           <Route>
             <AmountDateAreaChart />

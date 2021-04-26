@@ -20,3 +20,6 @@ https://bennettfeely.com/clippy/
 
 - [] Setup
 
+## React Sprint
+
+- [] Implement number animation
