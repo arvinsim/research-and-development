@@ -4,24 +4,28 @@ import { AmountDateAreaChart } from "./AmountDateAreaChart";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { CreatePerson } from "./CreatePerson";
 import { UseRef } from "./UseRef";
+import { TranslatedText } from "./TranslatedText";
 
 function App() {
   return (
-      <Container>
-        <BrowserRouter>
-          <Switch>
-            <Route exact path={"/react-hook-form"}>
-              <CreatePerson />
-            </Route>
-            <Route exact path={"/use-ref"}>
-              <UseRef />
-            </Route>
-            <Route>
-              <AmountDateAreaChart />
-            </Route>
-          </Switch>
-        </BrowserRouter>
-      </Container>
+    <Container>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path={"/react-hook-form"}>
+            <CreatePerson />
+          </Route>
+          <Route exact path={"/use-ref"}>
+            <UseRef />
+          </Route>
+          <Route exact path={"/translated"}>
+            <TranslatedText />
+          </Route>
+          <Route>
+            <AmountDateAreaChart />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </Container>
   );
 }
 
