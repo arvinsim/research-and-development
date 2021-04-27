@@ -14,7 +14,7 @@ export function ReactSpring() {
           alignItems: "center",
         }}
       >
-        <p>Scroll down</p>
+          <YourNetWorth />
       </ParallaxLayer>
 
       <ParallaxLayer
@@ -33,7 +33,7 @@ export function ReactSpring() {
           color: "white",
         }}
       >
-        <YourNetWorth />
+          <h1>That's great!</h1>
       </ParallaxLayer>
     </Parallax>
   );
