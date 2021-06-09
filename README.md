@@ -1,4 +1,4 @@
-# Recharts Research
+# Research and Development
 
 # Clip Visualizer
 
@@ -15,3 +15,11 @@ https://bennettfeely.com/clippy/
 ## Cypress
 
 - [x] Make a unit test for submitting create person form
+
+## React i18n
+
+- [] Setup
+
+## React Sprint
+
+- [] Implement number animation

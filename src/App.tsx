@@ -1,28 +1,40 @@
 import React from "react";
 import styled from "styled-components";
-import { AmountDateAreaChart } from "./AmountDateAreaChart";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { CreatePerson } from "./CreatePerson";
-import { UseRef } from "./UseRef";
+import {AmountDateAreaChart} from "./AmountDateAreaChart";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {CreatePerson} from "./CreatePerson";
+import {UseRef} from "./UseRef";
+import {TranslatedText} from "./TranslatedText";
+import {ReactSpring} from "./ReactSpring";
+import {ZipMultipleFilesDownload} from "./ZipMultipleFilesDownload";
 
 function App() {
-  return (
-      <Container>
-        <BrowserRouter>
-          <Switch>
-            <Route exact path={"/react-hook-form"}>
-              <CreatePerson />
-            </Route>
-            <Route exact path={"/use-ref"}>
-              <UseRef />
-            </Route>
-            <Route>
-              <AmountDateAreaChart />
-            </Route>
-          </Switch>
-        </BrowserRouter>
-      </Container>
-  );
+    return (
+        <Container>
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path={"/react-hook-form"}>
+                        <CreatePerson/>
+                    </Route>
+                    <Route exact path={"/use-ref"}>
+                        <UseRef/>
+                    </Route>
+                    <Route exact path={"/translated"}>
+                        <TranslatedText/>
+                    </Route>
+                    <Route exact path={"/spring"}>
+                        <ReactSpring/>
+                    </Route>
+                    <Route exact path={"/zip"}>
+                        <ZipMultipleFilesDownload/>
+                    </Route>
+                    <Route>
+                        <AmountDateAreaChart/>
+                    </Route>
+                </Switch>
+            </BrowserRouter>
+        </Container>
+    );
 }
 
 const Container = styled.div`
