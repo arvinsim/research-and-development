@@ -5,8 +5,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { CreatePerson } from "./CreatePerson";
 import { UseRef } from "./UseRef";
 import { TranslatedText } from "./TranslatedText";
-import { ReactSpring } from "./ReactSpring";
+import { ReactSpringParallax } from "./ReactSpringParallax";
 import { ZipMultipleFilesDownload } from "./ZipMultipleFilesDownload";
+import { ReactSpring } from "./ReactSpring";
 
 function App() {
   return (
@@ -22,8 +23,11 @@ function App() {
           <Route exact path={"/translated"}>
             <TranslatedText />
           </Route>
-          <Route exact path={"/spring"}>
+          <Route exact path={"/react-spring"}>
             <ReactSpring />
+          </Route>
+          <Route exact path={"/react-spring/parallax"}>
+            <ReactSpringParallax />
           </Route>
           <Route exact path={"/zip"}>
             <ZipMultipleFilesDownload />
