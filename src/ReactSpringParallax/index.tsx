@@ -2,7 +2,7 @@ import React from "react";
 import { useSpring, animated, config } from "react-spring";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
-export function ReactSpring() {
+export function ReactSpringParallax() {
   return (
     <Parallax pages={2} style={{ top: "0", left: "0" }}>
       <ParallaxLayer
