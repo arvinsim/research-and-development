@@ -3,15 +3,21 @@ import { useSpring, animated, config } from "react-spring";
 
 export function ReactSpring() {
   return (
-    <div style={{ width: "100%" }}>
-      <ReactSpringFading />
-      <ReactSpringMoveX />
-      <ReactSpringMoveY />
+    <div
+      style={{
+        width: "100%",
+        height: "100vh",
+      }}
+    >
+      <Fading />
+      <MoveX />
+      <MoveY />
+      <Scroll />
     </div>
   );
 }
 
-function ReactSpringFading() {
+function Fading() {
   const styleProps = useSpring({
     from: { opacity: 1 },
     to: { opacity: 0 },
@@ -36,7 +42,7 @@ function ReactSpringFading() {
   );
 }
 
-function ReactSpringMoveX() {
+function MoveX() {
   const styleProps = useSpring({
     from: { x: 0 },
     to: { x: 500 },
@@ -56,7 +62,7 @@ function ReactSpringMoveX() {
   );
 }
 
-function ReactSpringMoveY() {
+function MoveY() {
   const styleProps = useSpring({
     from: { y: 0 },
     to: { y: 200 },
@@ -73,6 +79,34 @@ function ReactSpringMoveY() {
       }}
     >
       React Spring Move Y
+    </animated.div>
+  );
+}
+
+function Scroll() {
+  const itemHeight = 50;
+  const items = ["Is", "this", "real", "life", "Is", "this", "fantasy"];
+  const { scroll } = useSpring({
+    scroll: (items.length - 1) * itemHeight,
+    from: { scroll: 0 },
+    reset: true,
+    loop: { reverse: true },
+    delay: 200,
+    config: config.molasses,
+  });
+
+  return (
+    <animated.div style={{ overflow: "auto", height: 100 }} scrollTop={scroll}>
+      {items.map((item, i) => {
+        return (
+          <div
+            key={`${item}_${i}`}
+            style={{ height: itemHeight, textAlign: "center" }}
+          >
+            {item}
+          </div>
+        );
+      })}
     </animated.div>
   );
 }
