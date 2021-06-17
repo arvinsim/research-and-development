@@ -5,7 +5,8 @@ export function ReactSpring() {
   return (
     <div style={{ width: "100%" }}>
       <ReactSpringFading />
-      <ReactSpringMove />
+      <ReactSpringMoveX />
+      <ReactSpringMoveY />
     </div>
   );
 }
@@ -35,7 +36,7 @@ function ReactSpringFading() {
   );
 }
 
-function ReactSpringMove() {
+function ReactSpringMoveX() {
   const styleProps = useSpring({
     from: { x: 0 },
     to: { x: 500 },
@@ -50,7 +51,28 @@ function ReactSpringMove() {
         ...styleProps,
       }}
     >
-      React Spring Move
+      React Spring Move X
+    </animated.div>
+  );
+}
+
+function ReactSpringMoveY() {
+  const styleProps = useSpring({
+    from: { y: 0 },
+    to: { y: 200 },
+    loop: { reverse: true },
+    config: config.molasses,
+  });
+  return (
+    <animated.div
+      style={{
+        position: "relative",
+        width: "100px",
+        backgroundColor: "aquamarine",
+        ...styleProps,
+      }}
+    >
+      React Spring Move Y
     </animated.div>
   );
 }
