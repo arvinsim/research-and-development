@@ -1,65 +1,112 @@
 import React from "react";
 import { useSpring, animated, config } from "react-spring";
-import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
 export default function ReactSpring() {
   return (
-    <Parallax pages={2} style={{ top: "0", left: "0" }}>
-      <ParallaxLayer
-        offset={0}
-        speed={2.5}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <YourNetWorth />
-      </ParallaxLayer>
-
-      <ParallaxLayer
-        offset={1}
-        speed={2}
-        style={{ backgroundColor: "#ff6d6d" }}
-      />
-
-      <ParallaxLayer
-        offset={1}
-        speed={0.5}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          color: "white",
-        }}
-      >
-        <h1>That's great!</h1>
-      </ParallaxLayer>
-    </Parallax>
+    <div
+      style={{
+        width: "100%",
+        height: "100vh",
+      }}
+    >
+      <Fading />
+      <MoveX />
+      <MoveY />
+      <Scroll />
+    </div>
   );
 }
 
-function YourNetWorth() {
-  const { number } = useSpring({
-    reset: true,
-    from: { number: 0 },
-    number: 999999999,
-    delay: 200,
-    config: config.default,
-  });
-
-  const h1Props = useSpring({
-    from: { opacity: 0 },
-    to: { opacity: 1 },
-    reset: true,
-    delay: 400,
+function Fading() {
+  const styleProps = useSpring({
+    from: { opacity: 1 },
+    to: { opacity: 0 },
+    loop: { reverse: true },
     config: config.molasses,
   });
 
   return (
-    <animated.h1 style={h1Props}>
-      Your net worth is now{" "}
-      <animated.span>{number.to((n) => n.toFixed(2))}</animated.span>
-    </animated.h1>
+    <animated.div
+      style={{
+        textAlign: "center",
+        fontWeight: "bold",
+        color: "black",
+        backgroundColor: "aquamarine",
+        width: "200px",
+        height: "200px",
+        ...styleProps,
+      }}
+    >
+      React Spring Fading
+    </animated.div>
+  );
+}
+
+function MoveX() {
+  const styleProps = useSpring({
+    from: { x: 0 },
+    to: { x: 500 },
+    loop: { reverse: true },
+    config: config.molasses,
+  });
+  return (
+    <animated.div
+      style={{
+        width: "100px",
+        backgroundColor: "antiquewhite",
+        ...styleProps,
+      }}
+    >
+      React Spring Move X
+    </animated.div>
+  );
+}
+
+function MoveY() {
+  const styleProps = useSpring({
+    from: { y: 0 },
+    to: { y: 200 },
+    loop: { reverse: true },
+    config: config.molasses,
+  });
+  return (
+    <animated.div
+      style={{
+        position: "relative",
+        width: "100px",
+        backgroundColor: "aquamarine",
+        ...styleProps,
+      }}
+    >
+      React Spring Move Y
+    </animated.div>
+  );
+}
+
+function Scroll() {
+  const itemHeight = 50;
+  const items = ["Is", "this", "real", "life", "Is", "this", "fantasy"];
+  const { scroll } = useSpring({
+    scroll: (items.length - 1) * itemHeight,
+    from: { scroll: 0 },
+    reset: true,
+    loop: { reverse: true },
+    delay: 200,
+    config: config.molasses,
+  });
+
+  return (
+    <animated.div style={{ overflow: "auto", height: 100 }} scrollTop={scroll}>
+      {items.map((item, i) => {
+        return (
+          <div
+            key={`${item}_${i}`}
+            style={{ height: itemHeight, textAlign: "center" }}
+          >
+            {item}
+          </div>
+        );
+      })}
+    </animated.div>
   );
 }

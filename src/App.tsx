@@ -6,6 +6,8 @@ const CreatePerson = React.lazy(() => import("./CreatePerson"));
 const UseRef = React.lazy(() => import("./UseRef"));
 const TranslatedText = React.lazy(() => import("./TranslatedText"));
 const ReactSpring = React.lazy(() => import("./ReactSpring"));
+const ReactSpringParallax = React.lazy(() => import("./ReactSpringParallax"));
+
 const ZipMultipleFilesDownload = React.lazy(
   () => import("./ZipMultipleFilesDownload")
 );
@@ -27,8 +29,11 @@ function App() {
             <Route exact path={"/translated"}>
               <TranslatedText />
             </Route>
-            <Route exact path={"/spring"}>
+            <Route exact path={"/react-spring"}>
               <ReactSpring />
+          </Route>
+          <Route exact path={"/react-spring/parallax"}>
+            <ReactSpringParallax />
             </Route>
             <Route exact path={"/zip"}>
               <ZipMultipleFilesDownload />
