@@ -9,7 +9,7 @@ type TFormData = {
   age: number;
 };
 
-export function CreatePerson() {
+export default function CreatePerson() {
   const [message, setMessage] = useState("");
   const {
     register,

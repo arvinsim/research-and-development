@@ -1,37 +1,46 @@
-import React from "react";
+import React, { Suspense } from "react";
 import styled from "styled-components";
-import { AmountDateAreaChart } from "./AmountDateAreaChart";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { CreatePerson } from "./CreatePerson";
-import { UseRef } from "./UseRef";
-import { TranslatedText } from "./TranslatedText";
-import { ReactSpring } from "./ReactSpring";
-import { ZipMultipleFilesDownload } from "./ZipMultipleFilesDownload";
+
+const CreatePerson = React.lazy(() => import("./CreatePerson"));
+const UseRef = React.lazy(() => import("./UseRef"));
+const TranslatedText = React.lazy(() => import("./TranslatedText"));
+const ReactSpring = React.lazy(() => import("./ReactSpring"));
+const ZipMultipleFilesDownload = React.lazy(
+  () => import("./ZipMultipleFilesDownload")
+);
+const PictureSrcSet = React.lazy(() => import("./PictureSrcSet"));
+const AmountDateAreaChart = React.lazy(() => import("./AmountDateAreaChart"));
 
 function App() {
   return (
     <Container>
       <BrowserRouter>
-        <Switch>
-          <Route exact path={"/react-hook-form"}>
-            <CreatePerson />
-          </Route>
-          <Route exact path={"/use-ref"}>
-            <UseRef />
-          </Route>
-          <Route exact path={"/translated"}>
-            <TranslatedText />
-          </Route>
-          <Route exact path={"/spring"}>
-            <ReactSpring />
-          </Route>
-          <Route exact path={"/zip"}>
-            <ZipMultipleFilesDownload />
-          </Route>
-          <Route>
-            <AmountDateAreaChart />
-          </Route>
-        </Switch>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Switch>
+            <Route exact path={"/react-hook-form"}>
+              <CreatePerson />
+            </Route>
+            <Route exact path={"/use-ref"}>
+              <UseRef />
+            </Route>
+            <Route exact path={"/translated"}>
+              <TranslatedText />
+            </Route>
+            <Route exact path={"/spring"}>
+              <ReactSpring />
+            </Route>
+            <Route exact path={"/zip"}>
+              <ZipMultipleFilesDownload />
+            </Route>
+            <Route exact path={"/picture"}>
+              <PictureSrcSet />
+            </Route>
+            <Route>
+              <AmountDateAreaChart />
+            </Route>
+          </Switch>
+        </Suspense>
       </BrowserRouter>
     </Container>
   );

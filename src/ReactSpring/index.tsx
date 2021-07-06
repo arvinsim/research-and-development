@@ -2,7 +2,7 @@ import React from "react";
 import { useSpring, animated, config } from "react-spring";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
-export function ReactSpring() {
+export default function ReactSpring() {
   return (
     <Parallax pages={2} style={{ top: "0", left: "0" }}>
       <ParallaxLayer
@@ -14,7 +14,7 @@ export function ReactSpring() {
           alignItems: "center",
         }}
       >
-          <YourNetWorth />
+        <YourNetWorth />
       </ParallaxLayer>
 
       <ParallaxLayer
@@ -33,7 +33,7 @@ export function ReactSpring() {
           color: "white",
         }}
       >
-          <h1>That's great!</h1>
+        <h1>That's great!</h1>
       </ParallaxLayer>
     </Parallax>
   );

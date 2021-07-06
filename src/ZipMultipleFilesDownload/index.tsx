@@ -5,7 +5,7 @@ type TFormData = {
   files: Array<string>;
 };
 
-export function ZipMultipleFilesDownload() {
+export default function ZipMultipleFilesDownload() {
   const { register, handleSubmit } = useForm<TFormData>();
   const onSubmit = (data: TFormData) => {
     console.log(data);

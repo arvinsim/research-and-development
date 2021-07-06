@@ -19,7 +19,7 @@ interface DataType {
   amount: number;
 }
 
-export function AmountDateAreaChart() {
+export default function AmountDateAreaChart() {
   // const formatAmount = (amount: number) => `S${amount}`;
   const data: Array<DataType> = [
     {

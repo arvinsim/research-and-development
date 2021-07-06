@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 
-export function UseRef() {
+export default function UseRef() {
   const childRef = useRef(null);
   const onButtonClick = () => {
     console.log(childRef.current);
