@@ -31,9 +31,9 @@ function App() {
             </Route>
             <Route exact path={"/react-spring"}>
               <ReactSpring />
-          </Route>
-          <Route exact path={"/react-spring/parallax"}>
-            <ReactSpringParallax />
+            </Route>
+            <Route exact path={"/react-spring/parallax"}>
+              <ReactSpringParallax />
             </Route>
             <Route exact path={"/zip"}>
               <ZipMultipleFilesDownload />
