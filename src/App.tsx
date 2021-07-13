@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import styled from "styled-components";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import CLSDemo from "./WebVitals/CLSDemo";
 
 const CreatePerson = React.lazy(() => import("./CreatePerson"));
 const UseRef = React.lazy(() => import("./UseRef"));
@@ -40,6 +41,9 @@ function App() {
             </Route>
             <Route exact path={"/picture"}>
               <PictureSrcSet />
+            </Route>
+            <Route exact path={"/web-vitals/cls"}>
+              <CLSDemo />
             </Route>
             <Route>
               <AmountDateAreaChart />
