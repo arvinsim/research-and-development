@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import random from "lodash/random";
 
-// TODO: Layout the items properly in the grid
 // TODO: What should the props type be for the functional component props
 // TODO: Add example of image placeholder
+// TODO: Add context wrapper for CLS Demo state
 
 function CLSDemo() {
   return (
@@ -17,20 +17,18 @@ function CLSDemo() {
       </Selector>
       <Content>
         <Delay>
-          <Card>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Aspernatur consequatur id ipsa placeat sunt, tempora tenetur unde
-              voluptates. Accusamus amet ducimus inventore numquam odit placeat
-              porro? Autem facilis libero reiciendis?
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
-              assumenda at, aut consequatur consequuntur dolores, doloribus ea
-              eos libero maiores natus nihil odit pariatur quaerat quasi, quia
-              repudiandae unde voluptatum.
-            </p>
-          </Card>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur
+            consequatur id ipsa placeat sunt, tempora tenetur unde voluptates.
+            Accusamus amet ducimus inventore numquam odit placeat porro? Autem
+            facilis libero reiciendis?
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
+            assumenda at, aut consequatur consequuntur dolores, doloribus ea eos
+            libero maiores natus nihil odit pariatur quaerat quasi, quia
+            repudiandae unde voluptatum.
+          </p>
         </Delay>
       </Content>
     </Wrapper>
@@ -38,7 +36,7 @@ function CLSDemo() {
 }
 
 function Delay(props: { maxDelay?: number }) {
-  const { maxDelay = 5000 } = props;
+  const { maxDelay = 5000, children } = props;
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -48,7 +46,7 @@ function Delay(props: { maxDelay?: number }) {
   }, [maxDelay]);
 
   if (show) {
-    return props.children;
+    return <Card>{children}</Card>;
   }
 
   return <Card>&nbsp;</Card>;
@@ -56,12 +54,19 @@ function Delay(props: { maxDelay?: number }) {
 
 const Wrapper = styled.div`
   width: 100%;
+  height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: ". selector ." ". content ." ". . .";
 `;
 
-const Selector = styled.div``;
-const Content = styled.div``;
+const Selector = styled.div`
+  grid-area: selector;
+`;
+const Content = styled.div`
+  grid-area: content;
+`;
 
 const Card = styled.div`
   background: #e2e2e2;
