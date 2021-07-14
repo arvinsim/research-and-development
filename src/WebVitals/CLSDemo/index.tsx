@@ -1,76 +1,104 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import random from "lodash/random";
+import { useLocation } from "react-router-dom";
+import qs from "query-string";
 
-// TODO: What should the props type be for the functional component props
-// TODO: Add example of image placeholder
-// TODO: Add context wrapper for CLS Demo state
+import AbstractImage from "./abstract.png";
 
-function CLSDemo() {
+export default function CLSDemo() {
   return (
     <Wrapper>
-      <Selector>
-        <select>
-          <option>With CLS</option>
-          <option>Little or no CLS</option>
-        </select>
-      </Selector>
       <Content>
-        <Delay>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur
-            consequatur id ipsa placeat sunt, tempora tenetur unde voluptates.
-            Accusamus amet ducimus inventore numquam odit placeat porro? Autem
-            facilis libero reiciendis?
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
-            assumenda at, aut consequatur consequuntur dolores, doloribus ea eos
-            libero maiores natus nihil odit pariatur quaerat quasi, quia
-            repudiandae unde voluptatum.
-          </p>
-        </Delay>
+        <ContentWrapper>
+          <Delay>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Aspernatur consequatur id ipsa placeat sunt, tempora tenetur unde
+              voluptates. Accusamus amet ducimus inventore numquam odit placeat
+              porro? Autem facilis libero reiciendis?
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
+              assumenda at, aut consequatur consequuntur dolores, doloribus ea
+              eos libero maiores natus nihil odit pariatur quaerat quasi, quia
+              repudiandae unde voluptatum.
+            </p>
+          </Delay>
+          <div>
+            <img src={AbstractImage} alt={"Abstract Image"} />
+            <p>
+              Pass <Code>cls=true</Code> in the query param to enable CLS. Any
+              other value will disable CLS.
+            </p>
+            <p>
+              This is the initial content and image that is being shown in the
+              page. Note that if
+            </p>
+          </div>
+        </ContentWrapper>
       </Content>
     </Wrapper>
   );
 }
 
-function Delay(props: { maxDelay?: number }) {
+const Delay: React.FunctionComponent<{ maxDelay?: number }> = (props) => {
   const { maxDelay = 5000, children } = props;
-  const [show, setShow] = useState(false);
+  const location = useLocation();
+  const { cls } = qs.parse(location.search);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(function () {
-      setShow(true);
+      setLoading(false);
     }, random(0, maxDelay));
   }, [maxDelay]);
 
-  if (show) {
-    return <Card>{children}</Card>;
-  }
-
-  return <Card>&nbsp;</Card>;
-}
+  return (
+    <Card loading={loading} isCLS={cls === "true"}>
+      {children}
+    </Card>
+  );
+};
 
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas: ". selector ." ". content ." ". . .";
+  grid-template-rows: 1fr;
+  grid-template-areas: ". . ." ". content ." ". . .";
 `;
 
-const Selector = styled.div`
-  grid-area: selector;
-`;
 const Content = styled.div`
   grid-area: content;
 `;
 
-const Card = styled.div`
-  background: #e2e2e2;
-  min-height: 50vh;
+const ContentWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 2fr 1fr;
+  grid-gap: 16px;
 `;
 
-export default CLSDemo;
+const Card = styled.div<{ readonly isCLS: boolean; readonly loading: boolean }>`
+  background: #e2e2e2;
+  border-radius: 4px;
+  color: black;
+  ${(props) => {
+    const { loading, isCLS } = props;
+    if (loading && isCLS) {
+      return `display: none;`;
+    }
+    if (loading && !isCLS) {
+      return `color: transparent`;
+    }
+  }}
+`;
+
+const Code = styled.code`
+  background: black;
+  color: gold;
+  border-radius: 4px;
+  padding: 2px;
+`;
