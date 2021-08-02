@@ -20,6 +20,8 @@ https://bennettfeely.com/clippy/
 
 - [] Setup
 
-## React Sprint
+## React Spring
 
 - [] Implement number animation
+- [] Implement a photo gallery that can be swiped on a touchscreen.
+
