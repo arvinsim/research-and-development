@@ -12,6 +12,7 @@
     "@hookform/resolvers": "^2.4.0",
     "@react-spring/parallax": "^9.1.2",
     "@react-spring/web": "^9.1.2",
+    "axios": "^0.21.1",
     "date-fns": "^2.21.1",
     "i18next": "^20.2.1",
     "jszip": "^3.6.0",

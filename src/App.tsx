@@ -8,6 +8,7 @@ const UseRef = React.lazy(() => import("./UseRef"));
 const TranslatedText = React.lazy(() => import("./TranslatedText"));
 const ReactSpring = React.lazy(() => import("./ReactSpring"));
 const ReactSpringParallax = React.lazy(() => import("./ReactSpringParallax"));
+const UploadFile = React.lazy(() => import("./UploadFile"));
 
 const ZipMultipleFilesDownload = React.lazy(
   () => import("./ZipMultipleFilesDownload")
@@ -44,6 +45,9 @@ function App() {
             </Route>
             <Route exact path={"/web-vitals/cls"}>
               <CLSDemo />
+            </Route>
+            <Route exact path={"/upload-file"}>
+              <UploadFile />
             </Route>
             <Route>
               <AmountDateAreaChart />
