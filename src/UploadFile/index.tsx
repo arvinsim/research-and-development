@@ -5,7 +5,7 @@ import "./UploadFile.css";
 import { uploadAxios } from "./axios.config";
 
 function UploadFile() {
-  const [uploadPercent, setUploadPercent] = useState<number>();
+  const [uploadPercent, setUploadPercent] = useState<number>(0);
   const onDrop = useCallback(
     (acceptedFiles) => {
       console.log(acceptedFiles);
@@ -23,7 +23,7 @@ function UploadFile() {
         },
       };
 
-      uploadAxios.post("/upload", formData, config);
+      uploadAxios.post("/uploadfile", formData, config);
     },
     [uploadAxios]
   );
@@ -39,7 +39,7 @@ function UploadFile() {
           <p>Drag 'n' drop some files here, or click to select files</p>
         )}
       </div>
-      {uploadPercent && <span>{uploadPercent}% uploaded</span>}
+      {uploadPercent > 0 && <span>{uploadPercent}% uploaded</span>}
     </div>
   );
 }
