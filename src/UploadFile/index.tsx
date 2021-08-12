@@ -1,29 +1,45 @@
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import "./UploadFile.css";
+import heic2any from "heic2any";
 
+import "./UploadFile.css";
 import { uploadAxios } from "./axios.config";
 
 function UploadFile() {
   const [uploadPercent, setUploadPercent] = useState<number>(0);
+  const [message, setMessage] = useState<string>("");
   const onDrop = useCallback(
-    (acceptedFiles) => {
-      console.log(acceptedFiles);
+    async (acceptedFiles) => {
+      try {
+        if (acceptedFiles.length === 0) {
+          throw new Error("There are no files to upload");
+        }
 
-      // We assume we are only uploading one file
-      const file = acceptedFiles[0];
-      let formData = new FormData();
-      formData.append("file", file);
+        // We assume we are only uploading one file
+        let file = acceptedFiles[0];
+        console.log(file);
 
-      const config = {
-        onUploadProgress: function (progressEvent: ProgressEvent) {
-          setUploadPercent(
-            Math.round((progressEvent.loaded * 100) / progressEvent.total)
-          );
-        },
-      };
+        if (file.type === "image/heic") {
+          // const reader = new FileReader();
+          file = heic2any({ blob: file.preview });
+        }
 
-      uploadAxios.post("/uploadfile", formData, config);
+        let formData = new FormData();
+        formData.append("file", file);
+
+        const config = {
+          onUploadProgress: function (progressEvent: ProgressEvent) {
+            setUploadPercent(
+              Math.round((progressEvent.loaded * 100) / progressEvent.total)
+            );
+          },
+        };
+
+        await uploadAxios.post("/uploadfile", formData, config);
+      } catch (error) {
+        console.log(error);
+        setMessage(error.message);
+      }
     },
     [uploadAxios]
   );
@@ -39,7 +55,8 @@ function UploadFile() {
           <p>Drag 'n' drop some files here, or click to select files</p>
         )}
       </div>
-      {uploadPercent > 0 && <span>{uploadPercent}% uploaded</span>}
+      <div>{uploadPercent > 0 && <span>{uploadPercent}% uploaded</span>}</div>
+      <div>{message}</div>
     </div>
   );
 }
