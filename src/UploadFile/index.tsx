@@ -16,16 +16,19 @@ function UploadFile() {
         }
 
         // We assume we are only uploading one file
-        let file = acceptedFiles[0];
+        const file = acceptedFiles[0];
         console.log(file);
 
+        let processedFile;
         if (file.type === "image/heic") {
           // const reader = new FileReader();
-          file = heic2any({ blob: file.preview });
+          processedFile = heic2any({ blob: file });
+        } else {
+          processedFile = file;
         }
 
         let formData = new FormData();
-        formData.append("file", file);
+        formData.append("file", processedFile);
 
         const config = {
           onUploadProgress: function (progressEvent: ProgressEvent) {
@@ -43,7 +46,10 @@ function UploadFile() {
     },
     [uploadAxios]
   );
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: "image/jpeg, image/png, image/heic",
+  });
 
   return (
     <div>
