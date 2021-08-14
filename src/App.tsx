@@ -15,6 +15,7 @@ const ZipMultipleFilesDownload = React.lazy(
 );
 const PictureSrcSet = React.lazy(() => import("./PictureSrcSet"));
 const AmountDateAreaChart = React.lazy(() => import("./AmountDateAreaChart"));
+const Streaming = React.lazy(() => import("./Streaming"));
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
               <ul>
                 <li>
                   <Link to={"/upload-file"}>Upload File</Link>
+                </li>
+                <li>
+                  <Link to={"/streaming"}>Streaming</Link>
                 </li>
               </ul>
             </div>
@@ -60,6 +64,9 @@ function App() {
               </Route>
               <Route exact path={"/chart"}>
                 <AmountDateAreaChart />
+              </Route>
+              <Route exact path={"/streaming"}>
+                <Streaming />
               </Route>
             </Switch>
           </AppGrid>
