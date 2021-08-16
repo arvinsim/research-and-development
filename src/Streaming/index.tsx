@@ -2,6 +2,7 @@ import React, { useCallback, useRef, useState } from "react";
 
 function Streaming() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [videoId, setVideoId] = useState<number>();
   const videoPlayer = useRef(null);
 
   // This is a PoC for custom playback
@@ -19,10 +20,24 @@ function Streaming() {
     }
   };
 
+  const handleShowOmoVideo = () => {
+    setVideoId(undefined);
+    videoPlayer.current.load();
+  };
+
+  const handleShowWorldVideo = () => {
+    setVideoId(2);
+    videoPlayer.current.load();
+  };
+
+  const queryParams = videoId ? `?v=${videoId}` : "";
+
   return (
     <div>
       <div>
         <div onClick={handleClick}>{isPlaying ? "Pause" : "Play"}</div>
+        <div onClick={handleShowOmoVideo}>Show OMO video</div>
+        <div onClick={handleShowWorldVideo}>Show world video</div>
       </div>
       <video
         id="video1"
@@ -33,7 +48,10 @@ function Streaming() {
         muted
         controls
       >
-        <source src="http://localhost:8000/videostream" type="video/mp4" />
+        <source
+          src={`http://localhost:8000/watch${queryParams}`}
+          type="video/mp4"
+        />
         Your browser does not support HTML video.
       </video>
     </div>
