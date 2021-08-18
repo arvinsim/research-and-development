@@ -16,6 +16,7 @@ const ZipMultipleFilesDownload = React.lazy(
 const PictureSrcSet = React.lazy(() => import("./PictureSrcSet"));
 const AmountDateAreaChart = React.lazy(() => import("./AmountDateAreaChart"));
 const Streaming = React.lazy(() => import("./Streaming"));
+const PhotographyMap = React.lazy(() => import("./PhotographyMap"));
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
                 </li>
                 <li>
                   <Link to={"/streaming"}>Streaming</Link>
+                </li>
+                <li>
+                  <Link to={"/photography-map"}>Photography Map</Link>
                 </li>
               </ul>
             </div>
@@ -67,6 +71,9 @@ function App() {
               </Route>
               <Route exact path={"/streaming"}>
                 <Streaming />
+              </Route>
+              <Route exact path={"/photography-map"}>
+                <PhotographyMap />
               </Route>
             </Switch>
           </AppGrid>

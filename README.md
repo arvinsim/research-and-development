@@ -25,3 +25,7 @@ https://bennettfeely.com/clippy/
 - [] Implement number animation
 - [] Implement a photo gallery that can be swiped on a touchscreen.
 
+## Leaflet JS
+
+- [] Create photography map using LeafletJS
+
