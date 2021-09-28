@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import styled from "styled-components";
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import CLSDemo from "./WebVitals/CLSDemo";
+import ContextTest from "./ContextTest";
 
 const CreatePerson = React.lazy(() => import("./CreatePerson"));
 const UseRef = React.lazy(() => import("./UseRef"));
@@ -78,6 +79,9 @@ function App() {
               </Route>
               <Route exact path={"/d3"}>
                 <D3Playground />
+              </Route>
+              <Route exact path={"/context"}>
+                <ContextTest />
               </Route>
             </Switch>
           </AppGrid>
