@@ -17,6 +17,7 @@ const PictureSrcSet = React.lazy(() => import("./PictureSrcSet"));
 const AmountDateAreaChart = React.lazy(() => import("./AmountDateAreaChart"));
 const Streaming = React.lazy(() => import("./Streaming"));
 const PhotographyMap = React.lazy(() => import("./PhotographyMap"));
+const SimpleDisplay = React.lazy(() => import("./SimpleDisplay"));
 
 function App() {
   return (
@@ -35,6 +36,9 @@ function App() {
                 </li>
                 <li>
                   <Link to={"/photography-map"}>Photography Map</Link>
+                </li>
+                <li>
+                  <Link to={"/simple-display"}>Simple Display</Link>
                 </li>
               </ul>
             </div>
@@ -74,6 +78,9 @@ function App() {
               </Route>
               <Route exact path={"/photography-map"}>
                 <PhotographyMap />
+              </Route>
+              <Route exact path={"/simple-display"}>
+                <SimpleDisplay />
               </Route>
             </Switch>
           </AppGrid>
