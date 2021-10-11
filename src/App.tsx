@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 import styled from "styled-components";
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
-import CLSDemo from "./WebVitals/CLSDemo";
 
 const CreatePerson = React.lazy(() => import("./CreatePerson"));
 const UseRef = React.lazy(() => import("./UseRef"));
@@ -17,6 +16,10 @@ const PictureSrcSet = React.lazy(() => import("./PictureSrcSet"));
 const AmountDateAreaChart = React.lazy(() => import("./AmountDateAreaChart"));
 const Streaming = React.lazy(() => import("./Streaming"));
 const PhotographyMap = React.lazy(() => import("./PhotographyMap"));
+const D3Playground = React.lazy(() => import("./D3Playground"));
+const CLSDemo = React.lazy(() => import("./WebVitals/CLSDemo"));
+const ContextTest = React.lazy(() => import("./ContextTest"));
+const ReducerTest = React.lazy(() => import("./ReducerTest"));
 const SimpleDisplay = React.lazy(() => import("./SimpleDisplay"));
 
 function App() {
@@ -78,6 +81,15 @@ function App() {
               </Route>
               <Route exact path={"/photography-map"}>
                 <PhotographyMap />
+              </Route>
+              <Route exact path={"/d3"}>
+                <D3Playground />
+              </Route>
+              <Route exact path={"/context"}>
+                <ContextTest />
+              </Route>
+              <Route exact path={"/reducer"}>
+                <ReducerTest />
               </Route>
               <Route exact path={"/simple-display"}>
                 <SimpleDisplay />
