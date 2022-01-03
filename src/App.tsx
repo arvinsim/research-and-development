@@ -21,6 +21,7 @@ const CLSDemo = React.lazy(() => import("./WebVitals/CLSDemo"));
 const ContextTest = React.lazy(() => import("./ContextTest"));
 const ReducerTest = React.lazy(() => import("./ReducerTest"));
 const SimpleDisplay = React.lazy(() => import("./SimpleDisplay"));
+const PositionSticky = React.lazy(() => import("./PositionSticky"));
 
 function App() {
   return (
@@ -42,6 +43,9 @@ function App() {
                 </li>
                 <li>
                   <Link to={"/simple-display"}>Simple Display</Link>
+                </li>
+                <li>
+                  <Link to={"/position-sticky"}>Position Sticky</Link>
                 </li>
               </ul>
             </div>
@@ -93,6 +97,9 @@ function App() {
               </Route>
               <Route exact path={"/simple-display"}>
                 <SimpleDisplay />
+              </Route>
+              <Route exact path={"/position-sticky"}>
+                <PositionSticky />
               </Route>
             </Switch>
           </AppGrid>
